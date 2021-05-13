@@ -12,6 +12,11 @@ export default class View {
         this.model = model;
     }
 
+    render(){
+        const todos = this.model.getTodos();
+        todos.forEach( (todo) => this.createRow(todo)); //Utilizamos programación funcional para iterar el array de todos
+    }
+
     addTodo(title, description){
         const todo = this.model.addTodo(title, description);
         this.createRow(todo);
