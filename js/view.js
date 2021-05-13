@@ -17,6 +17,10 @@ export default class View {
         this.createRow(todo);
     }
 
+    toggleCompleted(id){
+        this.model.toggleCompleted(id);
+    }
+
     removeTodo(id){
         this.model.removeTodo(id);
         document.getElementById(id).remove();
@@ -30,7 +34,6 @@ export default class View {
             <td>${todo.title}</td>
             <td>${todo.description}</td>
             <td class="text-center">
-                <input type="checkbox">
             </td>
             <td class="text-right">
                 <button class="btn btn-primary mb-1">
@@ -38,7 +41,14 @@ export default class View {
                 </button>
             </td>
         `;
+        //Task Completed?
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.checked = todo.completed;
+        checkbox.onclick = () => this.toggleCompleted(todo.id);
+        row.children[2].appendChild(checkbox);
 
+        //Remove Task
         const removeBtn = document.createElement('button');
         removeBtn.classList.add('btn', 'btn-danger', 'mb-1', 'ml-1');
         removeBtn.innerHTML = '<i class="fa fa-trash"></i>';
