@@ -11,7 +11,7 @@ export default class AddTodo {
 
     onClick(callback){
         this.btn.onclick = () => {
-            if(title.value === '' || description.value === '') {
+            if(this.title.value === '' || this.description.value === '') {
                 // alert.classList.remove('d-none');
                 this.alert.show('Se requiere un titulo y descripción');
             } else {

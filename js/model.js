@@ -43,6 +43,13 @@ export default class Model {
         this.save();
     }
 
+    editTodo(id, values){
+        const index = this.findTodo(id);
+        //this.todos[index] = {id, ...values}; //asigna al todo el id y expande values.
+        Object.assign(this.todos[index], values); //hace lo mismo sin modificar el id.
+        this.save();
+    }
+
     addTodo(title, description){
         const todo = {
             id: this.currentId++,
@@ -52,7 +59,7 @@ export default class Model {
         }
 
         this.todos.push(todo);
-        console.log(this.todos);
+        //console.log(this.todos);
 
         this.save();
 
